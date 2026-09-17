@@ -1,0 +1,194 @@
+# To get started:
+#
+# pip install -r requirements.txt
+# mkdocs serve
+# Or just see the README
+#
+# ----------------------------------------------------------------------
+site_name: TDR Docs
+theme: material
+extra_css:
+  - 'stylesheets/extra.css'
+
+markdown_extensions:
+  - attr_list
+  - admonition
+  - codehilite
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+repo_url:  https://github.com/APTrust/tdr-docs
+nav:
+  - Home: index.md
+  - Trusted Digital Repository: trusted-digital-repository.md
+  - OAIS Documents:
+      - Overview: oais/index.md
+      - Designated Community: oais/02.01-designated-community.md
+      - Definition of AIP: oais/02.02-definition-of-aip.md
+      - Definition of DIP: oais/02.03-definition-of-dip.md
+      - Definition of SIP: oais/02.04-definition-of-sip.md
+      - Mandatory Responsibilities: oais/02.05-mandatory-responsibilities.md
+      - Preservation and Storage: oais/02.06-preservation-and-storage.md
+  - TDR 3.0 Organizational Infrastructure:
+      - Overview: tdr-3/index.md
+      - 3.1 Governance and Organizational Viability:
+          - 3.1.1 Mission Statement: tdr-3/03.01.01-mission-statement.md
+          - 3.1.2 Preservation strategic plan:
+              - Overview: tdr-3/03.01.02-preservation-strategic-plan.md
+              - 3.1.2.1 Succession, contingency, escrow plans: tdr-3/03.01.02.01-succession-contingency-escrow-plans.md
+              - 3.1.2.2 Monitor environment for succession triggers: tdr-3/03.01.02.02-monitor-environment-for-time-to-deploy-succession-contengency-escrow.md
+          - 3.1.3 Collection Policy: tdr-3/03.01.03-collection-policy.md
+      - 3.2 Organizational Structure and Staffing:
+          - 3.2.1 Identified duties and appointed staff:
+              - Overview: tdr-3/03.02.01-identified-duties-and-appointed-staff.md
+              - 3.2.1.1 Identified and established duties: tdr-3/03.02.01.01-identified-and-established-duties.md
+              - 3.2.1.2 Appropriate number of staff: tdr-3/03.02.01.02-appropriate-number-of-staff.md
+              - 3.2.1.3 Professional Development Program: tdr-3/03.02.01.03-professional-development-program.md
+      - 3.3 Procedural Accountability and Policy Framework:
+          - 3.3.1 Designated community: tdr-3/03.03.01-designated-community.md
+          - 3.3.2 Preservation policies:
+              - Overview: tdr-3/03.03.02-preservation-policies.md
+              - 3.3.2.1 Review and update preservation policies: tdr-3/03.03.02.01-review-and-update-preservation-policies.md
+          - 3.3.3 Documented history of changes: tdr-3/03.03.03-documented-history-of-changes.md
+          - 3.3.4 Commit to Transparency: tdr-3/03.03.04-commit-to-transparency.md
+          - 3.3.5 Information integrity measurements: tdr-3/03.03.05-information-integrity-measurements.md
+          - 3.3.6 Self-assessment and external certification: tdr-3/03.03.06-self-assessment-and-external-certification.md
+      - 3.4 Financial Sustainability:
+          - 3.4.1 Business planning processes: tdr-3/03.04.01-business-planning-processes.md
+          - 3.4.2 Financial transparency, compliance, and audits: tdr-3/03.04.02-financial-transparency-compliance-and-audits.md
+          - 3.4.3 Risk, benefit, investment, expenditure: tdr-3/03.04.03-risk-benefit-investment-expenditure.md
+      - 3.5 Contracts, Licenses, and Liabilities:
+          - 3.5.1 Contracts or deposit agreements for content:
+              - Overview: tdr-3/03.05.01-contracts-or-deposit-agreements-for-content.md
+              - 3.5.1.1 Agreements for preservation rights: tdr-3/03.05.01.01-contracts-or-deposit-agreements-for-preservation-rights.md
+              - 3.5.1.2 Completeness of agreements with depositors: tdr-3/03.05.01.02-completeness-of-agreements-with-depositors.md
+              - 3.5.1.3 Policies about preservation responsibility: tdr-3/03.05.01.03-policies-about-preservation-responsibility.md
+              - 3.5.1.4 Policies about liability and rights challenges: tdr-3/03.05.01.04-policies-about-liability-and-rights-challenges.md
+          - 3.5.2 Track and manage property rights/restrictions: tdr-3/03.05.02-track-and-manage-property-rights-restrictions.md
+  - TDR 4.0 Digital Object Management:
+      - Overview: tdr-4/index.md
+      - "4.1 Ingest: Acquisition of Content":
+          - 4.1.1 Content information and information properties:
+              - Overview: tdr-4/04.01.01-content-information-and-information-properties.md
+              - 4.1.1.1 Identification of information properties: tdr-4/04.01.01.01-identification-of-information-properties.md
+              - 4.1.1.2 Record of content information: tdr-4/04.01.01.02-record-of-content-information-and-information-properties.md
+          - 4.1.2 Information required at deposit: tdr-4/04.01.02-the-repository-shall-clearly-specify-the-information-that-needs-to-be.md
+          - 4.1.3 Recognition and parsing of SIPs: tdr-4/04.01.03-recognition-and-parsing-of-sips.md
+          - 4.1.4 Verification of Producer: tdr-4/04.01.04-verification-of-producer.md
+          - 4.1.5 Verification of SIP: tdr-4/04.01.05-verification-of-sip.md
+          - 4.1.6 Control over digital objects: tdr-4/04.01.06-control-over-digital-objects-document.md
+          - 4.1.7 Communication with producer/depositor: tdr-4/04.01.07-communication-with-producer-depositor.md
+          - 4.1.8 Acquisition records: tdr-4/04.01.08-acquisition-records.md
+      - "4.2 Ingest: Creation of the AIP":
+          - 4.2.1 Definition for each AIP or class:
+              - Overview: tdr-4/04.02.01-associated-definition-for-each-aip-or-class-of-aips.md
+              - 4.2.1.1 Identify which definition applies to which AIP: tdr-4/04.02.01.01-identify-which-definition-applies-to-which-aip.md
+              - 4.2.1.2 Definition of each AIP: tdr-4/04.02.01.02-definition-of-each-aip.md
+          - 4.2.2 Description of how AIPs are constructed from SIPs: tdr-4/04.02.02-description-of-how-aips-are-constructed-from-sips.md
+          - 4.2.3 Document final disposition of all SIPs:
+              - Overview: tdr-4/04.02.03-document-final-disposition-of-all-sips.md
+              - 4.2.3.1 Procedures for SIPs not incorporated: tdr-4/04.02.03.01-procedures-if-a-sip-is-not-incorporated-or-discarded.md
+          - 4.2.4 Persistent unique identifiers for AIPs:
+              - Overview: tdr-4/04.02.04-convention-that-generates-persistent-unique-identifiers-for-aips.md
+              - 4.2.4.1 Uniquely identify each AIP:
+                  - Overview: tdr-4/04.02.04.01-uniquely-identify-each-aip.md
+                  - 4.2.4.1.1 Have unique identifiers: tdr-4/04.02.04.01.01-have-unique-identifiers.md
+                  - 4.2.4.1.2 Assign and maintain persistent identifiers: tdr-4/04.02.04.01.02-assign-and-maintain-persistent-identifiers-of-the-aip-and-its.md
+                  - 4.2.4.1.3 Processes for identifier changes: tdr-4/04.02.04.01.03-describe-any-processes-for-changes-to-identifiers.md
+                  - 4.2.4.1.4 List identifiers and check duplicates: tdr-4/04.02.04.01.04-provide-a-list-of-all-identifiers-and-check-for-duplications.md
+                  - 4.2.4.1.5 Identifiers adequate now and in future: tdr-4/04.02.04.01.05-system-of-identifiers-is-adequate-now-and-in-the-future.md
+              - 4.2.4.2 Linking and resolution services: tdr-4/04.02.04.02-system-of-reliable-linking-resolution-services-in-order-to-find.md
+          - 4.2.5 Authoritative Representation Information:
+              - Overview: tdr-4/04.02.05-tool-and-resources-to-provide-authoritative-representation.md
+              - 4.2.5.1 Identify file types: tdr-4/04.02.05.01-tools-or-methods-to-identify-the-file-types-of-all-objects.md
+              - 4.2.5.2 Determine necessary Representation Information: tdr-4/04.02.05.02-tools-or-methods-to-determine-what-representation-information-is.md
+              - 4.2.5.3 Access to requisite Representation Information: tdr-4/04.02.05.03-have-access-to-the-requisite-representation-information.md
+              - 4.2.5.4 Persistently associate Representation Information: tdr-4/04.02.05.04-tools-or-methods-to-ensure-that-representation-information-is.md
+          - 4.2.6 Acquiring PDI for Content Data Objects:
+              - Overview: tdr-4/04.02.06-documented-processes-for-acquiring-pdi-for-associated-content-data.md
+              - 4.2.6.1 Documented processes for acquiring PDI: tdr-4/04.02.06.01-documented-processes-for-acquiring-pdi.md
+              - 4.2.6.2 Execute documented processes for acquiring PDI: tdr-4/04.02.06.02-execute-documented-processes-for-acquiring-pdi.md
+              - 4.2.6.3 PDI persistently associated with content: tdr-4/04.02.06.03-pdi-is-persistently-associated-with-the-content-data-object.md
+          - 4.2.7 Content Information understandable at creation:
+              - Overview: tdr-4/04.02.07-content-information-is-understandable-for-designated-community-at-the.md
+              - 4.2.7.1 Testing understandability: tdr-4/04.02.07.01-processes-for-testing-understandability-for-designated-community-of.md
+              - 4.2.7.2 Execute testing process: tdr-4/04.02.07.02-execute-testing-process-of-content-information-of-aips.md
+              - 4.2.7.3 Remediate if understandability fails: tdr-4/04.02.07.03-bring-content-information-of-aip-up-to-level-of-understandability-if.md
+          - 4.2.8 Verify each AIP for completeness and correctness: tdr-4/04.02.08-verify-each-aip-for-completeness-and-correctness.md
+          - 4.2.9 Independent integrity verification: tdr-4/04.02.09-independent-mechanism-for-verifying-the-integrity-of-the-content.md
+          - 4.2.10 Contemporaneous records of AIP creation: tdr-4/04.02.10-contemporaneous-records-of-actions-and-administration-processes.md
+      - 4.3 Preservation Planning:
+          - 4.3.1 Documented preservation strategies: tdr-4/04.03.01-documented-preservation-strategies-relevant-to-its-holdings.md
+          - 4.3.2 Monitoring the preservation environment:
+              - Overview: tdr-4/04.03.02-mechanisms-for-monitoring-its-preservation-environment.md
+              - 4.3.2.1 Notify on inadequate Representation Information: tdr-4/04.03.02.01-mechanisms-for-monitoring-and-notification-when-representation.md
+          - 4.3.3 Change preservation plans from monitoring:
+              - Overview: tdr-4/04.03.03-mechanisms-to-change-preservation-plans-as-a-result-of-its-monitoring.md
+              - 4.3.3.1 Gather extra Representation Information: tdr-4/04.03.03.01-mechanisms-for-creating-identifying-or-gathering-any-extra.md
+          - 4.3.4 Evidence of preservation effectiveness: tdr-4/04.03.04-provide-evidence-of-the-effectiveness-of-its-preservation-activities.md
+      - 4.4 AIP Preservation:
+          - 4.4.1 Bit-level storage specifications:
+              - Overview: tdr-4/04.04.01-specifications-for-how-the-aips-are-stored-down-to-the-bit-level.md
+              - 4.4.1.1 Content Information preservation: tdr-4/04.04.01.01-content-information-preservation.md
+              - 4.4.1.2 Monitoring integrity of AIPs: tdr-4/04.04.01.02-monitoring-integrity-of-aips.md
+          - 4.4.2 AIP storage and preservation records:
+              - Overview: tdr-4/04.04.02-aip-storage-and-preservation-records.md
+              - 4.4.2.1 AIP procedures: tdr-4/04.04.02.01-aip-procedures.md
+              - 4.4.2.2 Compliance with specification: tdr-4/04.04.02.02-compliance-with-specification.md
+      - 4.5 Information Management:
+          - 4.5.1 Minimum discovery information requirements: tdr-4/04.05.01-specify-minimum-information-requirements-to-enable-the-designated.md
+          - 4.5.2 Descriptive information for each AIP: tdr-4/04.05.02-capture-or-create-minimum-descriptive-information-for-each-aip.md
+          - 4.5.3 Bi-directional AIP and description linkages:
+              - Overview: tdr-4/04.05.03-create-bi-directional-linkages-between-each-aip-and-its-descriptive.md
+              - 4.5.3.1 Maintaining Associations: tdr-4/04.05.03.01-maintaining-associations.md
+      - 4.6 Access Management:
+          - 4.6.1 Comply with Access Policies:
+              - Overview: tdr-4/04.06.01-comply-with-access-policies.md
+              - 4.6.1.1 Log access management failures: tdr-4/04.06.01.01-log-and-review-all-access-management-failures-and-anomalies.md
+          - 4.6.2 Dissemination traceable to originals:
+              - Overview: tdr-4/04.06.02-follow-policies-and-procedures-that-enable-the-dissemination-of.md
+              - 4.6.2.1 Act on problem reports from users: tdr-4/04.06.02.01-record-and-act-upon-problem-reports-about-errors-in-data-and.md
+  - TDR 5.0 Infrastructure and Security:
+      - Overview: tdr-5/index.md
+      - 5.1 Technical Infrastructure Risk Management:
+          - 5.1.1 Manage risks to preservation operations:
+              - Overview: tdr-5/05.01.01-identify-and-manage-the-risks-to-its-preservation-operations.md
+              - 5.1.1.1 Employ technology watches:
+                  - Overview: tdr-5/05.01.01.01-employ-technology-watches.md
+                  - 5.1.1.1.2 Monitor hardware change notifications: tdr-5/05.01.01.01.02-procedures-in-place-to-monitor-and-receive-notifications.md
+                  - 5.1.1.1.3 Evaluate hardware changes: tdr-5/05.01.01.01.03-procedures-in-place-to-evaluate-when-changes-are-needed.md
+                  - 5.1.1.1.4 Funding to replace hardware: tdr-5/05.01.01.01.04-procedures-commitment-and-funding-to-replace-hardware.md
+                  - 5.1.1.1.5 Appropriate software technologies: tdr-5/05.01.01.01.05-software-technologies-appropriate-to-the-services.md
+                  - 5.1.1.1.6 Monitor software change notifications: tdr-5/05.01.01.01.06-procedures-in-place-to-monitor-and-receive-notifications-when.md
+                  - 5.1.1.1.7 Evaluate software changes: tdr-5/05.01.01.01.07-procedures-in-place-to-evaluate-when-changes-are-needed-to-current.md
+                  - 5.1.1.1.8 Funding to replace software: tdr-5/05.01.01.01.08-procedures-commitment-and-funding-to-replace-software-when-evaluation.md
+              - 5.1.1.2 Adequate backup support: tdr-5/05.01.01.02-the-repository-shall-have-adequate-hardware-and-software-support-for.md
+              - 5.1.1.3 Detect bit corruption or loss:
+                  - Overview: tdr-5/05.01.01.03-effective-mechanisms-to-detect-bit-corruption-or-loss.md
+                  - 5.1.1.3.1 Record and report corruption incidents: tdr-5/05.01.01.03.01-record-and-report-to-its-administration-all-incidents-of-data.md
+              - 5.1.1.4 React to new security updates: tdr-5/05.01.01.04-process-to-record-and-react-to-the-availability-of-new-security.md
+              - 5.1.1.5 Storage media and hardware change: tdr-5/05.01.01.05-defined-processes-for-storage-media-and-or-hardware-change-e-g.md
+              - 5.1.1.6 Documented critical processes:
+                  - Overview: tdr-5/05.01.01.06-identified-and-documented-critical-processes-that-affect-its-ability.md
+                  - 5.1.1.6.1 Change management process: tdr-5/05.01.01.06.01-documented-change-management-process-that-identifies-changes-to.md
+                  - 5.1.1.6.2 Test effect of process changes: tdr-5/05.01.01.06.02-process-for-testing-and-evaluating-the-effect-of-changes-to-the.md
+          - 5.1.2 Manage number and location of copies:
+              - Overview: tdr-5/05.01.02-manage-the-number-and-location-of-copies-of-all-digital-objects.md
+              - 5.1.2.1 Ensure copies are synchronized: tdr-5/05.01.02.01-mechanisms-in-place-to-ensure-any-multiple-copies-of-digital-objects.md
+      - 5.2 Security Risk Management:
+          - 5.2.1 Systematic security risk analysis: tdr-5/05.02.01-maintain-a-systematic-analysis-of-security-risk-factors-associated.md
+          - 5.2.2 Controls for defined security risks: tdr-5/05.02.02-implemented-controls-to-adequately-address-each-of-the-defined.md
+          - 5.2.3 Staff roles and authorizations: tdr-5/05.02.03-staff-shall-have-delineated-roles-responsibilities-and-authorizations.md
+          - 5.2.4 Disaster preparedness and recovery plan: tdr-5/05.02.04-suitable-written-disaster-preparedness-and-recovery-plan-s-including.md
