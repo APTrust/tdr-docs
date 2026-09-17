@@ -35,7 +35,7 @@ These documents describe the mapping between APTrust and the [OAIS Reference Arc
 In addition to OAIS vocabulary, APTrust maintain two additional glossaries.
 
 - [APTrust User Guide Glossary](https://aptrust.github.io/userguide/glossary/)
-- [Technical Documentation Glossary](https://aptrust.org/documentation-page/development/glossary/) (login required).
+- [Technical Documentation Glossary](https://aptrust.org/documentation-page/development/glossary/) (APTrust staff only; supplied to auditors on request).
 
 ## ISO 16363 Criteria
 
