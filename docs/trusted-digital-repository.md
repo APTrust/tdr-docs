@@ -15,7 +15,7 @@ retrieved: 2026-09-17
 
 APTrust [documentation](https://aptrust.org/documentation/) and [policies](https://aptrust.org/resources/policies/) are available on the APTrust [website](https://aptrust.org).
 
-APTrust process documentation is available on the APTrust [User Guide](https://aptrust.github.io/userguide/) and in the [DART Documentation](https://aptrust.github.io/dart-docs/).
+APTrust process documentation is available on the APTrust [User Guide](https://docs.aptrust.org/user-guide/) and in the [DART Documentation](https://docs.aptrust.org/dart-docs/).
 
 APTrust follows the [Digital Library Federation Code of Conduct](https://www.diglib.org/about/code-of-conduct/) (as recommended by our members)
 
@@ -34,8 +34,8 @@ These documents describe the mapping between APTrust and the [OAIS Reference Arc
 
 In addition to OAIS vocabulary, APTrust maintain two additional glossaries.
 
-- [APTrust User Guide Glossary](https://aptrust.github.io/userguide/glossary/)
-- [Technical Documentation Glossary](https://aptrust.org/documentation-page/development/glossary/) (APTrust staff only; supplied to auditors on request).
+- [APTrust User Guide Glossary](https://docs.aptrust.org/user-guide/glossary/)
+- [Technical Documentation Glossary](https://aptrust.org/documentation-page/development/glossary/) (APTrust members only; supplied to auditors on request).
 
 ## ISO 16363 Criteria
 
