@@ -112,3 +112,9 @@ sub-repos send. Adding this repo as a fifth:
 
 Once that is in place, a commit to `main` is live in three to five minutes, and the status
 block in [CONTRIBUTING.md](CONTRIBUTING.md#what-happens-after-you-commit) should be deleted.
+
+## License
+
+Copyright © 2026 APTrust. The content in this repository is licensed under the
+[Creative Commons Attribution-NonCommercial 4.0 International License](https://creativecommons.org/licenses/by-nc/4.0/)
+(CC BY-NC 4.0), matching the combined site at docs.aptrust.org. The full legal text is in [LICENSE](LICENSE).
