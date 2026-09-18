@@ -27,7 +27,23 @@ This has consequences that look like omissions but are deliberate:
 `site_name: TDR Docs` becomes the URL prefix on the unified site (`/tdr-docs/`), so changing it
 moves every page.
 
-The repo is local-only — no git remote, no CI. Registering it with `aptrust-docs` is a future step.
+The repo lives at `APTrust/tdr-docs` (public). Registering it with `aptrust-docs` is still a future
+step — until that happens a push to `main` publishes nothing, because the parent only rebuilds on a
+`repository_dispatch` from one of its four registered sub-repos. The four concrete steps are recorded
+under *Registering with `aptrust-docs`* in `README.md`.
+
+Content is committed **directly to `main`** — no branches, no PRs, matching the sibling repos. The
+only automated gate is `.github/workflows/check-build.yml`, which runs `mkdocs build --strict` on
+every push. It reports breakage after the fact; it cannot block it.
+
+Two things outside `docs/`, so MkDocs never sees them:
+
+- `CONTRIBUTING.md` — the guide for human editors, written for people with no git experience. It
+  holds the accessibility rules in "do this / not this" form. Keep conventions there as a checklist
+  that links to `README.md` rather than a third copy that can drift.
+- `scripts/docs_to_docx.py` — converts `docs/` into per-section Word files in `review/` (gitignored)
+  for Google Drive review rounds. Stdlib only; pandoc is the one prerequisite. Deliberately one-way:
+  see the rationale in `scripts/README.md` before proposing a DOCX-to-Markdown reverse.
 
 ## Commands
 

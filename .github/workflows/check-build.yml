@@ -1,0 +1,40 @@
+name: Check build
+
+# Builds the site with --strict on every commit to main.
+#
+# Content here is committed directly to main rather than through pull requests, so
+# there is no review step to catch a broken link or a page missing from nav:. This
+# workflow is the backstop. It cannot *prevent* a bad commit — a required check only
+# blocks a pull request merge, and there are no pull requests here — but it fails
+# loudly and GitHub emails whoever pushed.
+#
+# A red X means the site is broken on main. Fix it with another commit; there is
+# nothing to roll back. The two usual causes are a link pointing at a page that does
+# not exist and a new page that was not added to nav: in mkdocs.yml.
+#
+# --strict is what makes this worth running: without it MkDocs reports broken links
+# as warnings and still exits 0.
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Build the site
+        run: mkdocs build --strict
