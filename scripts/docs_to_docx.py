@@ -22,6 +22,13 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DOCS = REPO_ROOT / "docs"
 
+# Source links point at the branch rather than the commit the review copy was made
+# from, so they always open the page as it stands now — which is the version a
+# reviewer's change has to be applied to. The commit the copy came from is recorded
+# on each document's title page.
+BRANCH = "main"
+FALLBACK_REPO_URL = "https://github.com/APTrust/tdr-docs"
+
 # Folders under docs/ that hold assets rather than pages.
 NOT_SECTIONS = {"img", "stylesheets"}
 
@@ -85,22 +92,33 @@ def display_path(path):
         return str(path)
 
 
-def source_note(path):
+def repo_url():
+    """The repository's web address, taken from repo_url in mkdocs.yml."""
+    match = re.search(
+        r"^repo_url:[ \t]*(\S+)", (REPO_ROOT / "mkdocs.yml").read_text(encoding="utf-8"),
+        re.MULTILINE,
+    )
+    return match.group(1).rstrip("/") if match else FALLBACK_REPO_URL
+
+
+def source_note(path, base_url):
+    """A link back to the page on GitHub, shown as its path so it reads as one."""
     relative = path.relative_to(REPO_ROOT).as_posix()
-    return f"*Source: {relative}*"
+    return f"*Source: [{relative}]({base_url}/blob/{BRANCH}/{relative})*"
 
 
-def prepare_body(path):
+def prepare_body(path, base_url):
     """Strip front matter and add the source-file note under the page's H1."""
     _, body = split_front_matter(path.read_text(encoding="utf-8"))
     lines = body.strip().split("\n")
+    note = source_note(path, base_url)
 
     for index, line in enumerate(lines):
         if line.startswith("# "):
-            lines.insert(index + 1, "\n" + source_note(path))
+            lines.insert(index + 1, "\n" + note)
             return "\n".join(lines)
 
-    return source_note(path) + "\n\n" + "\n".join(lines)
+    return note + "\n\n" + "\n".join(lines)
 
 
 def build_stamp():
@@ -212,6 +230,7 @@ def main():
             fail(f"no section named '{args.section}'. Try one of: {known}")
 
     stamp = build_stamp()
+    base_url = repo_url()
     written = []
 
     for section in sections:
@@ -223,12 +242,15 @@ def main():
                 title = front_matter_value(block, "title") or page.stem
                 output = out_root / section["slug"] / f"{page.stem}.docx"
                 run_pandoc(
-                    prepare_body(page), output, title, stamp, resource_dirs, toc=False
+                    prepare_body(page, base_url), output, title, stamp,
+                    resource_dirs, toc=False,
                 )
                 written.append(output)
             continue
 
-        markdown = PAGE_BREAK.join(prepare_body(page) for page in section["pages"])
+        markdown = PAGE_BREAK.join(
+            prepare_body(page, base_url) for page in section["pages"]
+        )
         output = out_root / f"{section['sequence']}-{section['slug']}.docx"
         run_pandoc(markdown, output, section["title"], stamp, resource_dirs, toc=True)
         written.append(output)

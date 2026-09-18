@@ -62,10 +62,14 @@ python3 scripts/docs_to_docx.py --out ~/Desktop     # write somewhere else
 4. **Apply the accepted changes back to the Markdown by hand.** Under every criterion's heading the
    document carries a line like:
 
-   > *Source: docs/tdr-5/05.01.01.01-employ-technology-watches.md*
+   > *Source: [docs/tdr-5/05.01.01.01-employ-technology-watches.md](https://github.com/APTrust/tdr-docs/blob/main/docs/tdr-5/05.01.01.01-employ-technology-watches.md)*
 
-   That is the file to edit. Open it, make the change, and follow the conventions in
+   That is a live link to the page on GitHub — click it to go straight to the file, then use the
+   pencil icon to edit it in your browser. Follow the conventions in
    [CONTRIBUTING.md](../CONTRIBUTING.md).
+
+   The links point at the current version of each page on the `main` branch, not at the commit the
+   review copy was made from, so they always open the version your change has to be applied to.
 
 5. **Check the build, then commit:**
 
