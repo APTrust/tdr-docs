@@ -95,8 +95,13 @@ Three things to know:
   carries a trimmed label keeping the leading ISO number. An explicit nav label wins over
   front-matter `title:`.
 - **13 ISO subsections have no page of their own** (3.1–3.5, 4.1–4.6, 5.1–5.2). They appear as
-  title-only group nodes. A page that also has children is listed under its own label as
-  `- Overview: <path>`.
+  title-only group nodes. A criterion page that also has child sub-criteria is the overarching
+  requirement itself — not a summary — and carries its own evidence, so it is listed as the
+  group's own first child, repeating that label: `- 4.2.4 Persistent unique identifiers for
+  AIPs:` as the group, then `- 4.2.4 Persistent unique identifiers for AIPs: <path>` beneath it.
+  Only the four section landing pages (`oais/index.md`, `tdr-3/index.md`, `tdr-4/index.md`,
+  `tdr-5/index.md`) are true overviews — no `number:`, no requirement text — and keep the
+  `- Overview: <path>` label.
 - **Quote any label containing a colon**, e.g. `- "4.1 Ingest: Acquisition of Content":` —
   otherwise YAML fails to parse.
 
