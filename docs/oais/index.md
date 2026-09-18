@@ -13,4 +13,4 @@ retrieved: 2026-09-17
 
 ## OAIS Conformance Documents
 
-These pages describe the mapping between APTrust and the [OAIS Reference Architecture](http://public.ccsds.org/publications/archive/650x0m2.pdf)
+These pages describe the mapping between APTrust and the [OAIS Reference Architecture](http://dx.doi.org/10.7207/twr14-02)

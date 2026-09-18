@@ -10,7 +10,7 @@ retrieved: 2026-09-17
 [ISO 16363](https://www.iso.org/standard/56510.html) — *Audit and certification of
 trustworthy digital repositories* — is the international standard for assessing whether
 a digital repository can be trusted to preserve content over the long term. It extends
-the [OAIS Reference Model](https://public.ccsds.org/pubs/650x0m2.pdf) (ISO 14721) into a
+the [OAIS Reference Model](https://www.iso.org/standard/57284.html) (ISO 14721) into a
 set of criteria a repository can be measured against.
 
 These pages are APTrust's self-assessment against that standard. Each criterion has its
