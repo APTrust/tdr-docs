@@ -143,14 +143,6 @@ breaks: the parent's nightly 07:00 UTC build picks the content up within 24 hour
 The `/tdr/` URL prefix comes from `site_name: tdr` in this repo's `mkdocs.yml`. Changing it
 moves every page and orphans the search badge.
 
-### Still to do
-
-Capture the two screenshots still missing from [CONTRIBUTING.md](CONTRIBUTING.md), which
-need real build runs to exist: `actions-01-status.png` (the Actions tab listing runs, ideally
-with both a green check and a red X) and `actions-02-failed-step.png` (a failed run opened to
-the step that names the file at fault). Save them in `contributing-img/` and add them under
-*What happens after you commit* and *If you see a red X*.
-
 ## License
 
 Copyright © 2026 APTrust. The content in this repository is licensed under the

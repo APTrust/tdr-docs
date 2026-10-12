@@ -49,8 +49,7 @@ Two things outside `docs/`, so MkDocs never sees them:
 - `CONTRIBUTING.md` — the guide for human editors, written for people with no git experience. It
   holds the accessibility rules in "do this / not this" form. Keep conventions there as a checklist
   that links to `README.md` rather than a third copy that can drift. Its screenshots live in
-  `contributing-img/`, also outside `docs/`; two (the Actions tab) are still to be captured now that the
-  repo is registered with `aptrust-docs` and has real runs to show.
+  `contributing-img/`, also outside `docs/`.
 - `scripts/docs_to_docx.py` — converts `docs/` into Word files in `review/` (gitignored) for
   Google Drive review rounds: one folder per section, one file per three-number criterion with its
   sub-criteria folded in, plus a tracking spreadsheet. Stdlib only (the .xlsx is hand-written XML —

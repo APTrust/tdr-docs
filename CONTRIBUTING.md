@@ -218,7 +218,11 @@ change is normally live at [docs.aptrust.org](https://docs.aptrust.org/) within 
 There is nothing else you need to do — no separate publish step, no button to press.
 
 To watch it happen, open the **Actions** tab at the top of this repository. A yellow dot means a
-build is running, a green check means it finished, and a red X means something went wrong.
+build is running, a green check means it finished, and a red X means something went wrong. Each
+commit appears twice, once for each thing that happens to it: **Check build** tests that the site
+still builds, and **Notify Parent Docs Repo** tells the combined site to rebuild.
+
+![The Actions tab on GitHub, listing recent runs under All workflows. Each row has a commit message, a workflow name, and the branch main. Most rows start with a green check; one Check build row starts with a red X.](contributing-img/actions-01-status.png)
 
 ### If you see a red X
 
@@ -230,9 +234,13 @@ If it fails, GitHub emails you. A red X almost always means one of two things:
 - **A page missing from the navigation** — you added a page but did not add it to `nav:` in
   `mkdocs.yml`.
 
-Click the red X, then the failed step, to see which file and line caused it. Then fix it and commit
-again. There is nothing to undo or roll back — **everything here is fixed by editing forward**.
-Nothing you can do in this repository is hard to reverse.
+Click the red X, then the failed step, to see which file and line caused it. Look for the line
+that starts with `WARNING` — it names the page and the link at fault.
+
+![A failed Check build run opened to its list of steps. The Build the site step is marked with a red X and expanded. Near the end of its log, a line starting with WARNING says the file index.md contains an unrecognized relative link, followed by Aborted with 1 warnings in strict mode.](contributing-img/actions-02-failed-step.png)
+
+Then fix it and commit again. There is nothing to undo or roll back — **everything here is fixed
+by editing forward**. Nothing you can do in this repository is hard to reverse.
 
 ## Before you save — a checklist
 
