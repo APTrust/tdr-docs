@@ -5,8 +5,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## What this repo is
 
 APTrust's self-assessment against ISO 16363 (audit and certification of trustworthy digital
-repositories), as an MkDocs site. 120 markdown pages under `docs/`, one per criterion, scraped
-from aptrust.org and then restructured.
+repositories), as an MkDocs site. 127 markdown pages under `docs/`, one per criterion. 120 were
+scraped from aptrust.org and then restructured. The other seven were never on aptrust.org, so they
+have no `source_url`: six criteria added in the 2024 edition of ISO 16363 (4.1.1.3, 4.1.1.4, 4.2.3.2,
+4.2.3.3, 4.3.5, 5.1.1.7) and 5.1.1.1.1, which the 2012 edition had but WordPress never did. They carry
+the standard's text and a stub under `## Evidence Provided` until the Certification Working Group
+writes the evidence. The 2024 edition also swapped 4.2.1.1 and 4.2.1.2, so those two pages'
+`source_url` slugs carry each other's number — that is correct provenance, not a mistake.
 
 **This is a content-source repo, not a standalone site.** It is shaped to match the four sibling
 APTrust docs repos (`userguide`, `registry-docs`, `preserv-docs`, `dart-docs`), which are combined
@@ -29,7 +34,7 @@ moves every page.
 
 The repo lives at `APTrust/tdr-docs` (public). Registering it with `aptrust-docs` is still a future
 step — until that happens a push to `main` publishes nothing, because the parent only rebuilds on a
-`repository_dispatch` from one of its four registered sub-repos. The four concrete steps are recorded
+`repository_dispatch` from one of its four registered sub-repos. The concrete steps are recorded
 under *Registering with `aptrust-docs`* in `README.md`.
 
 Content is committed **directly to `main`** — no branches, no PRs, matching the sibling repos. The
@@ -40,9 +45,13 @@ Two things outside `docs/`, so MkDocs never sees them:
 
 - `CONTRIBUTING.md` — the guide for human editors, written for people with no git experience. It
   holds the accessibility rules in "do this / not this" form. Keep conventions there as a checklist
-  that links to `README.md` rather than a third copy that can drift.
-- `scripts/docs_to_docx.py` — converts `docs/` into per-section Word files in `review/` (gitignored)
-  for Google Drive review rounds. Stdlib only; pandoc is the one prerequisite. Deliberately one-way:
+  that links to `README.md` rather than a third copy that can drift. Its screenshots live in
+  `contributing-img/`, also outside `docs/`; two (the Actions tab) are still to be captured once the
+  repo is registered with `aptrust-docs`.
+- `scripts/docs_to_docx.py` — converts `docs/` into Word files in `review/` (gitignored) for
+  Google Drive review rounds: one folder per section, one file per three-number criterion with its
+  sub-criteria folded in, plus a tracking spreadsheet. Stdlib only (the .xlsx is hand-written XML —
+  do not add openpyxl); pandoc is the one prerequisite. Deliberately one-way:
   see the rationale in `scripts/README.md` before proposing a DOCX-to-Markdown reverse.
 
 ## Commands

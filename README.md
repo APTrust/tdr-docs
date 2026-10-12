@@ -1,6 +1,6 @@
 # TDR Docs
 
-APTrust's self-assessment against [ISO 16363](https://www.iso.org/standard/56510.html),
+APTrust's self-assessment against [ISO 16363](https://www.iso.org/standard/87472.html),
 the standard for audit and certification of trustworthy digital repositories.
 
 The content is built with [MkDocs](https://www.mkdocs.org/) using the
@@ -51,12 +51,18 @@ Markdown lives under `docs/`, one folder per section of the standard:
 | `docs/tdr-5/` | TDR 5.0 Infrastructure and Security Risk Management |
 | `docs/img/` | Images |
 
+The landing page and a short overview page sit directly in `docs/`.
+
 Filenames use a zero-padded hierarchical sequence (`04.02.04.01.01-…`) so that
 alphabetical order matches ISO 16363 criterion order.
 
 Every page carries front matter recording its `title`, the ISO criterion `number`, the
 `sequence` used for ordering, its `section`, and the `source_url` and `retrieved` date
-it was drawn from. Every page also carries a `description`, which becomes the page's
+it was drawn from. Most pages were drawn from aptrust.org. Seven were not, and have no
+`source_url`: 4.1.1.3, 4.1.1.4, 4.2.3.2, 4.2.3.3, 4.3.5 and 5.1.1.7 were added in the 2024
+edition of the standard, and 5.1.1.1.1 had no page on aptrust.org. Those pages carry the
+standard's text, with the evidence still to be written by the APTrust Certification
+Working Group. Every page also carries a `description`, which becomes the page's
 `<meta name="description">` tag — use the folded-with-strip form when adding a page:
 
 ```yaml
@@ -80,7 +86,29 @@ editing.
 ## Reviewing content in Word
 
 `scripts/docs_to_docx.py` converts the pages into Word documents for a collaborative
-review round in Google Drive. See [scripts/README.md](scripts/README.md).
+review round in Google Drive:
+
+```
+python3 scripts/docs_to_docx.py
+```
+
+It writes into `review/`, which git ignores:
+
+- **One folder per section** — `01-overview/`, `02-oais/`, `03-tdr-3/`, `04-tdr-4/`,
+  `05-tdr-5/`.
+- **One Word file per three-number criterion**, such as 4.1.1 or 4.2.4. A criterion with
+  sub-criteria is written as a single file named `Combined`, for example
+  `4.1.1 Combined - Content information and information properties.docx`, holding 4.1.1
+  and everything beneath it. Each section's landing page becomes `4.0 Overview.docx` and
+  so on.
+- **A tracking spreadsheet**, `TDR Review <year> Tracking.xlsx`, with one row per page and
+  the Word file it landed in, plus empty columns for status, review dates, whether the
+  change has been applied back to the Markdown, and notes.
+
+The script needs Python and [pandoc](https://pandoc.org/installing.html), nothing else.
+Review happens in Google Drive, and accepted changes are applied back to the Markdown by
+hand. The full workflow, the options, and the reason there is no Word-to-Markdown
+conversion are in [scripts/README.md](scripts/README.md).
 
 ## Publishing
 
@@ -109,6 +137,12 @@ sub-repos send. Adding this repo as a fifth:
    `.github/workflows/build-and-deploy.yml`.
 4. In the parent `mkdocs.yml`, add this repo to the `nav:` via `mkdocs-monorepo-plugin`.
    `site_name: TDR Docs` makes the URL prefix `/tdr-docs/`, so changing it moves every page.
+
+5. Capture the two screenshots still missing from [CONTRIBUTING.md](CONTRIBUTING.md), which
+   need real build runs to exist: `actions-01-status.png` (the Actions tab listing runs, ideally
+   with both a green check and a red X) and `actions-02-failed-step.png` (a failed run opened to
+   the step that names the file at fault). Save them in `contributing-img/` and add them under
+   *What happens after you commit* and *If you see a red X*.
 
 Once that is in place, a commit to `main` is live in three to five minutes, and the status
 block in [CONTRIBUTING.md](CONTRIBUTING.md#what-happens-after-you-commit) should be deleted.

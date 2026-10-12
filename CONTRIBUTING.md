@@ -1,7 +1,7 @@
 # How to edit these pages
 
 This repository holds APTrust's self-assessment against ISO 16363, the standard for audit and
-certification of trustworthy digital repositories. There are 120 pages here, one per criterion,
+certification of trustworthy digital repositories. There are 127 pages here, one per criterion,
 written in Markdown. They are published as part of the combined APTrust documentation site at
 [docs.aptrust.org](https://docs.aptrust.org/).
 
@@ -43,20 +43,37 @@ Best for small, self-contained text changes.
 
 1. Navigate to the page you want to change, in the `docs/` folder of this repository.
 2. Click the **pencil icon** in the upper right of the file view.
+
+   ![A page open on GitHub. The pencil icon sits in the toolbar at the upper right of the file, to the right of the Raw, copy and download buttons.](contributing-img/browser-01-pencil.png)
+
 3. Make your change.
 4. Click **Commit changes…**.
+
+   ![The same page in edit mode, showing its Markdown text. The green Commit changes button is at the upper right, next to Cancel changes.](contributing-img/browser-02-commit-button.png)
+
 5. Write a commit message describing your change — see
    [Writing a commit message](#writing-a-commit-message) below.
 6. Leave **Commit directly to the `main` branch** selected, and click **Commit changes**.
+
+   ![The Commit changes dialog, with a commit message and an extended description filled in, Commit directly to the main branch selected, and the green Commit changes button at the bottom.](contributing-img/browser-03-commit-dialog.png)
 
 That is the whole process. Your change is saved.
 
 ### Editing several files at once
 
 From anywhere in the repository on github.com, press the **`.`** key. This opens github.dev, a full
-editor in your browser with the file tree on the left. Edit as many files as you like, then use the
-Source Control panel on the left (the branching-arrows icon) to enter a message and click
-**Commit & Push**.
+editor in your browser with the file tree on the left.
+
+![The github.dev editor: the repository's files and folders listed down the left, and a page's Markdown text open on the right.](contributing-img/githubdev-01-editor.png)
+
+The first time you save changes from github.dev, a window may pop up asking you to authorize it to
+use your GitHub account. That is expected — it is GitHub asking permission on behalf of its own
+editor. Approve it and carry on.
+
+Edit as many files as you like, then use the Source Control panel on the left (the branching-arrows
+icon) to enter a message and click **Commit & Push**.
+
+![The Source Control panel in github.dev. A message box sits at the top, a blue Commit & Push button below it, and the one changed file is listed under Changes.](contributing-img/githubdev-02-source-control.png)
 
 github.dev cannot preview the rendered site — it only edits text. For that, use VS Code.
 
@@ -76,6 +93,9 @@ Then get a copy of the repository:
 
 1. Open VS Code.
 2. Press `Cmd+Shift+P` (macOS) or `Ctrl+Shift+P` (Windows) and type **Git: Clone**.
+
+   ![The VS Code command box at the top of the window with git:clone typed in, and Git: Clone highlighted as the first result.](contributing-img/vscode-01-clone.png)
+
 3. Paste `https://github.com/APTrust/tdr-docs` and choose a folder to put it in.
 4. VS Code will offer to sign you in to GitHub — accept, and it handles the login for you.
 5. When it asks whether to open the cloned repository, say yes.
@@ -99,11 +119,33 @@ python -m venv .venv
 
 You only do this once.
 
+#### What those two commands did
+
+They created a **virtual environment**: a folder named `.venv`, inside your copy of the repository,
+holding a private copy of the preview tools. Nothing is installed anywhere else on your computer,
+and the folder is never sent to GitHub. If it ever misbehaves, delete the `.venv` folder and run the
+two commands again — nothing is lost.
+
+You do not need to "activate" the environment, whatever other guides say. Every command in this
+guide starts with `.venv/bin/python` (or `.venv\Scripts\python` on Windows), which uses it directly.
+
+A few things you may see, all harmless:
+
+- **VS Code asks whether to use the new environment for this workspace.** Say yes.
+- **Your terminal prompt starts with `(.venv)`.** VS Code has activated the environment for you. The
+  commands in this guide work the same either way.
+- **`No module named mkdocs`.** The setup commands have not been run in this folder yet, or did not
+  finish. Run them again.
+- **`command not found: python3`** (or `python` on Windows). Python is not installed yet — install it
+  from the link above, then close and reopen VS Code.
+
 ### Each time you edit
 
-1. **Get the latest changes first.** Click the **sync icon** (circular arrows) in VS Code's blue
-   status bar at the bottom. This pulls in anything other people have changed. Do this before you
-   start, every time — it avoids conflicts.
+1. **Get the latest changes first.** Click the **sync icon** (circular arrows) in VS Code's status
+   bar, along the bottom edge of the window. This pulls in anything other people have changed. Do
+   this before you start, every time — it avoids conflicts.
+
+   ![The left end of the VS Code status bar. The sync icon, two arrows forming a circle, is just to the right of the branch name main.](contributing-img/vscode-02-sync.png)
 
 2. **Start the preview.** In the terminal:
 
@@ -115,6 +157,12 @@ You only do this once.
 
    Open <http://127.0.0.1:8000> in your browser. The preview reloads automatically every time you
    save a file. Leave it running while you work.
+
+   ![The VS Code terminal after starting the preview. A red warning from the Material for MkDocs team comes first, then lines marked INFO, ending with Serving on http://127.0.0.1:8000/.](contributing-img/vscode-03-preview.png)
+
+   The red **Warning from the Material for MkDocs team** at the top is a notice about a future
+   version of MkDocs. It is not an error and not about anything you did — ignore it. The preview is
+   ready when you see the line ending `Serving on http://127.0.0.1:8000/`.
 
 3. **Make your changes** in the editor.
 
@@ -133,6 +181,8 @@ You only do this once.
    - Your changed files are listed. Hover over each and click **+** to stage it.
    - Type your commit message in the box at the top.
    - Click **Commit**, then **Sync Changes** to send it to GitHub.
+
+   ![The Source Control panel in VS Code. A commit message is typed in the box at the top, the blue Commit button is below it, and two files are listed under Staged Changes.](contributing-img/vscode-04-source-control.png)
 
    You never need to type a git command.
 
@@ -279,7 +329,9 @@ audited there. You do not need to think about them here.
 ## Reviewing the content in Word or Google Docs
 
 For a full review round — where several people read and comment on the content together — there is a
-script that converts these pages into Word documents you can upload to Google Drive. See
+script that converts these pages into Word documents you can upload to Google Drive. It writes one
+Word file per three-number criterion (4.1.1, 4.1.2 and so on), sorted into a folder per section, and
+a spreadsheet for tracking which documents have been reviewed. See
 [scripts/README.md](scripts/README.md).
 
 ## Getting help
