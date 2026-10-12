@@ -34,6 +34,15 @@ markdown_extensions:
       custom_checkbox: true
   - pymdownx.tilde
 repo_url:  https://github.com/APTrust/tdr-docs
+
+# Only affects this repo's own build check; the parent site ignores it. By default MkDocs
+# validates only links ending in .md, so a link written without the extension, such as
+# [text](some-page), is logged at INFO level and passes --strict even though it is dead
+# on the site. This makes it a warning, which --strict turns into a failed build.
+validation:
+  links:
+    unrecognized_links: warn
+
 nav:
   - Home: index.md
   - Trusted Digital Repository: trusted-digital-repository.md

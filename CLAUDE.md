@@ -68,7 +68,8 @@ Two things outside `docs/`, so MkDocs never sees them:
 `python3 -m venv .venv && .venv/bin/pip install -r requirements.txt`.
 
 **Always build with `--strict`.** It is the only automated check that internal links resolve and
-that every page is in the nav. (The parent repo omits `--strict` only because `dart-docs`' nav is
+that every page is in the nav. `validation.links.unrecognized_links: warn` in `mkdocs.yml` extends it
+to links written without the `.md` extension, which MkDocs otherwise lets through. (The parent repo omits `--strict` only because `dart-docs`' nav is
 broken; that is not a reason to drop it here.)
 
 `.claude/launch.json` defines a `tdr-docs` preview server on port 8124.
