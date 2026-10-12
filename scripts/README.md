@@ -1,7 +1,8 @@
 # Review tooling
 
-`docs_to_docx.py` converts the 120 Markdown pages in `docs/` into Word documents that can be
-uploaded to Google Drive for a collaborative review round.
+`docs_to_docx.py` converts the 127 Markdown pages in `docs/` into Word documents that can be
+uploaded to Google Drive for a collaborative review round, along with a spreadsheet for tracking
+the review's progress.
 
 This folder is outside the documentation itself — nothing here is published to the site.
 
@@ -22,19 +23,53 @@ From the top level of the repository:
 python3 scripts/docs_to_docx.py
 ```
 
-That writes five files into `review/`:
+That writes 62 Word files into `review/`, in one folder per section, and a tracking spreadsheet
+beside them:
+
+| Folder | Contents |
+|---|---|
+| `01-overview/` | 1 file — the landing page and the Trusted Digital Repository overview |
+| `02-oais/` | 7 files — OAIS Documents, one per page |
+| `03-tdr-3/` | 16 files — TDR 3.0 Organizational Infrastructure |
+| `04-tdr-4/` | 31 files — TDR 4.0 Digital Object Management |
+| `05-tdr-5/` | 7 files — TDR 5.0 Infrastructure and Security Risk Management |
+
+Within a TDR folder there is one file per three-number criterion, so reviewers can take a criterion
+each and work in parallel:
 
 | File | Contents |
 |---|---|
-| `01-overview.docx` | The landing page and the Trusted Digital Repository overview |
-| `02-oais.docx` | OAIS Documents — 7 pages |
-| `03-tdr-3.docx` | TDR 3.0 Organizational Infrastructure — 26 pages |
-| `04-tdr-4.docx` | TDR 4.0 Digital Object Management — 61 pages |
-| `05-tdr-5.docx` | TDR 5.0 Infrastructure and Security Risk Management — 24 pages |
+| `4.0 Overview.docx` | The section's landing page |
+| `4.1.1 Combined - Content information and information properties.docx` | 4.1.1 and its sub-criteria 4.1.1.1 to 4.1.1.4 |
+| `4.1.3 Recognition and parsing of SIPs.docx` | 4.1.3 alone — it has no sub-criteria |
 
-One file per section, so reviewers can take a section each and work in parallel. The number prefixes
-make Google Drive sort them into the order of the standard. Each criterion starts on its own page,
-and each document opens with a table of contents listing every criterion in it.
+A file named `Combined` holds a criterion together with everything beneath it, however deep
+(4.2.4 brings 4.2.4.1, 4.2.4.1.1 and so on). Each criterion in it starts on its own page, and the
+document opens with a table of contents. A `/` in a criterion's title becomes `-` in the file name.
+
+The number prefixes on the folders make Google Drive sort them into the order of the standard.
+
+### The tracking spreadsheet
+
+`review/TDR Review 2026 Tracking.xlsx` (the year is the year you run the script) lists every page,
+grouped under a band for each section, with these columns:
+
+| Column | What goes in it |
+|---|---|
+| Status | Filled in during the review |
+| Section Title | The page's title, led by its criterion number — filled in by the script |
+| 1st Review Date | Filled in during the review |
+| Group Review Date | Filled in during the review |
+| Applied to Markdown | Filled in once the accepted changes are back in `docs/` |
+| Document | The Word file the page is in — filled in by the script |
+| Notes | Filled in during the review |
+
+A sub-criterion that shares a `Combined` file shows `"` in the Document column, meaning "same
+document as the row above".
+
+The spreadsheet always lists every section, even when `--section` converts only one. Running the
+script again writes a fresh, empty one over the copy in `review/` — so keep the working copy in
+Google Drive, not here.
 
 `review/` is ignored by git — the Word files are generated output and are never committed.
 
@@ -42,7 +77,7 @@ and each document opens with a table of contents listing every criterion in it.
 
 ```bash
 python3 scripts/docs_to_docx.py --section tdr-4     # one section only
-python3 scripts/docs_to_docx.py --per-page          # one Word file per criterion
+python3 scripts/docs_to_docx.py --per-page          # one Word file per page, sub-criteria split out
 python3 scripts/docs_to_docx.py --out ~/Desktop     # write somewhere else
 ```
 
@@ -52,8 +87,8 @@ python3 scripts/docs_to_docx.py --out ~/Desktop     # write somewhere else
    commit the review copy was made from. Each document repeats it under the title. If people keep
    editing the site during the review, that stamp is how you know what was reviewed.
 
-2. **Upload `review/` to Google Drive.** Open each file in Google Docs — Drive converts it
-   automatically.
+2. **Upload the folders and the tracking spreadsheet in `review/` to Google Drive.** Open each
+   file in Google Docs or Google Sheets — Drive converts it automatically.
 
 3. **Ask reviewers to use comments and suggestions**, not silent edits. In Google Docs that means
    the **Suggesting** mode (the pencil menu, top right) and the comment button. A tracked suggestion
@@ -90,10 +125,10 @@ python3 scripts/docs_to_docx.py --out ~/Desktop     # write somewhere else
 
 ## Why there is no Word-to-Markdown script
 
-Converting back automatically would rewrite all 120 files at once, and it would go wrong quietly:
+Converting back automatically would rewrite all 127 files at once, and it would go wrong quietly:
 
 - Every page begins with front matter — title, description, ISO number, source URL, retrieval date —
-  that does not exist in the Word file and would have to be reattached to all 120 files.
+  that does not exist in the Word file and would have to be reattached to all 127 files.
 - The 72 links between criteria and the exact spelling of the four canonical headings are both
   fragile under a round trip, and both are load-bearing: the first breaks the build, the second
   breaks nothing visibly and is only noticed later.
