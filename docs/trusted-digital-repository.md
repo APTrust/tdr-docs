@@ -39,7 +39,7 @@ In addition to OAIS vocabulary, APTrust maintain two additional glossaries.
 
 ## ISO 16363 Criteria
 
-For the purposes of the audit, the documentation contains a page for each of the [ISO 16363 criteria](http://www.iso.org/iso/catalogue_detail.htm?csnumber=56510). The goal for these pages was that they be a finding aid for the auditors, allowing them to easily locate the relevant parts of the documents for each criterion, but that all actual content be in the documents. Thus interested readers can use the documents without needing to refer to the criteria pages.
+For the purposes of the audit, the documentation contains a page for each of the [ISO 16363 criteria](https://www.iso.org/standard/87472.html). The goal for these pages was that they be a finding aid for the auditors, allowing them to easily locate the relevant parts of the documents for each criterion, but that all actual content be in the documents. Thus interested readers can use the documents without needing to refer to the criteria pages.
 
 - [3) Organizational Infrastructure](tdr-3/index.md)
 - [4) Digital Object Management](tdr-4/index.md)
