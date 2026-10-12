@@ -5,7 +5,11 @@
 # Or just see the README
 #
 # ----------------------------------------------------------------------
-site_name: TDR Docs
+# Lowercase on purpose. mkdocs-monorepo-plugin uses site_name verbatim as the URL
+# prefix on docs.aptrust.org when it is already URL-safe, so `tdr` gives /tdr/ and
+# `TDR` would give /TDR/. The tab label readers see ("TDR") is set in the parent
+# repo's nav, not here. Changing this value moves every page.
+site_name: tdr
 theme: material
 extra_css:
   - 'stylesheets/extra.css'

@@ -29,25 +29,28 @@ This has consequences that look like omissions but are deliberate:
   the merged tree.
 - No `site_url`, no `site_description`. Page descriptions come only from per-page front matter.
 
-`site_name: TDR Docs` becomes the URL prefix on the unified site (`/tdr-docs/`), so changing it
-moves every page.
+`site_name: tdr` becomes the URL prefix on the unified site (`/tdr/`), so changing it moves every
+page. It is lowercase on purpose: the monorepo plugin uses an already-URL-safe `site_name`
+verbatim, so `TDR` would publish at `/TDR/`. The tab label readers see ("TDR") is the nav key in
+the parent's `mkdocs.yml`.
 
-The repo lives at `APTrust/tdr-docs` (public). Registering it with `aptrust-docs` is still a future
-step — until that happens a push to `main` publishes nothing, because the parent only rebuilds on a
-`repository_dispatch` from one of its four registered sub-repos. The concrete steps are recorded
-under *Registering with `aptrust-docs`* in `README.md`.
+The repo lives at `APTrust/tdr-docs` (public) and is registered with `aptrust-docs` as its fifth
+sub-repo. A push to `main` runs `.github/workflows/notify-parent-docs.yml`, which sends the parent
+a `repository_dispatch` using the `DOCS_DISPATCH_TOKEN` secret; the parent rebuilds and the change
+is live in three to five minutes. What lives on the parent's side is listed under *Publishing* in
+`README.md`.
 
 Content is committed **directly to `main`** — no branches, no PRs, matching the sibling repos. The
 only automated gate is `.github/workflows/check-build.yml`, which runs `mkdocs build --strict` on
-every push. It reports breakage after the fact; it cannot block it.
+every push, independently of the notify workflow — a commit that fails it is still dispatched. It reports breakage after the fact; it cannot block it.
 
 Two things outside `docs/`, so MkDocs never sees them:
 
 - `CONTRIBUTING.md` — the guide for human editors, written for people with no git experience. It
   holds the accessibility rules in "do this / not this" form. Keep conventions there as a checklist
   that links to `README.md` rather than a third copy that can drift. Its screenshots live in
-  `contributing-img/`, also outside `docs/`; two (the Actions tab) are still to be captured once the
-  repo is registered with `aptrust-docs`.
+  `contributing-img/`, also outside `docs/`; two (the Actions tab) are still to be captured now that the
+  repo is registered with `aptrust-docs` and has real runs to show.
 - `scripts/docs_to_docx.py` — converts `docs/` into Word files in `review/` (gitignored) for
   Google Drive review rounds: one folder per section, one file per three-number criterion with its
   sub-criteria folded in, plus a tracking spreadsheet. Stdlib only (the .xlsx is hand-written XML —

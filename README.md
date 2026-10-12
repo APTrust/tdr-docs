@@ -112,40 +112,44 @@ conversion are in [scripts/README.md](scripts/README.md).
 
 ## Publishing
 
-This repo is **not published yet**. It is intended to be folded into the unified APTrust
-documentation site at [docs.aptrust.org](https://docs.aptrust.org/) alongside the User
-Guide, DART, Registry and Preservation Services docs, which are combined by the
-`aptrust-docs` repo using `mkdocs-monorepo-plugin`.
+This repo is published as the **TDR** tab of the unified APTrust documentation site, at
+<https://docs.aptrust.org/tdr/>, alongside the User Guide, DART, Registry and Preservation
+Services docs. The `aptrust-docs` repo combines them using `mkdocs-monorepo-plugin`.
 
 **Do not run `mkdocs gh-deploy`.** Publishing is the parent repo's job; deploying from
 here would put a broken standalone copy of the site on a `gh-pages` branch.
 
-### Registering with `aptrust-docs`
+### How a commit reaches the site
 
-Until the steps below are done, a commit to `main` here publishes nothing. `aptrust-docs`
-rebuilds on a push to itself, on a nightly 07:00 UTC schedule, or on a
-`repository_dispatch` event of type `sub-repo-updated` — which only its four registered
-sub-repos send. Adding this repo as a fifth:
+A push to `main` runs `.github/workflows/notify-parent-docs.yml`, which sends a
+`repository_dispatch` event of type `sub-repo-updated` to `APTrust/aptrust-docs`. That repo
+clones all five sub-repos, rebuilds, and deploys. A commit is normally live in three to five
+minutes.
 
-1. Add `.github/workflows/notify-parent-docs.yml` here, modeled on the copy in
-   `APTrust/registry-docs`: `peter-evans/repository-dispatch@v3`, event type
-   `sub-repo-updated`, targeting `APTrust/aptrust-docs`. Note this repo's default branch
-   is `main`, where the sibling repos use `master`.
-2. Add a `DOCS_DISPATCH_TOKEN` secret to this repo — a token with permission to trigger
-   workflows in `aptrust-docs`. The sub-repo workflow cannot fire the event without it.
-3. In `aptrust-docs`, add `tdr-docs` to the checkout and merge steps of
-   `.github/workflows/build-and-deploy.yml`.
-4. In the parent `mkdocs.yml`, add this repo to the `nav:` via `mkdocs-monorepo-plugin`.
-   `site_name: TDR Docs` makes the URL prefix `/tdr-docs/`, so changing it moves every page.
+The dispatch needs the `DOCS_DISPATCH_TOKEN` Actions secret on this repo: the fine-grained
+PAT owned by the `aptdeploy` service account, with **Contents: Read and write** on
+`APTrust/aptrust-docs`. It expires after 366 days and is shared with the other sub-repos, so
+it is rotated in all of them together — see *Automatic deploys* in the `aptrust-docs` README.
+If the token is missing or expired, the *Notify Parent Docs Repo* run turns red but nothing
+breaks: the parent's nightly 07:00 UTC build picks the content up within 24 hours.
 
-5. Capture the two screenshots still missing from [CONTRIBUTING.md](CONTRIBUTING.md), which
-   need real build runs to exist: `actions-01-status.png` (the Actions tab listing runs, ideally
-   with both a green check and a red X) and `actions-02-failed-step.png` (a failed run opened to
-   the step that names the file at fault). Save them in `contributing-img/` and add them under
-   *What happens after you commit* and *If you see a red X*.
+### What lives in `aptrust-docs`
 
-Once that is in place, a commit to `main` is live in three to five minutes, and the status
-block in [CONTRIBUTING.md](CONTRIBUTING.md#what-happens-after-you-commit) should be deleted.
+- The `- TDR: '!include ./repos/tdr/mkdocs.yml'` entry in the parent `nav:`. The tab label
+  readers see comes from there.
+- The `git clone` line for this repo in `.github/workflows/build-and-deploy.yml`.
+- The "TDR" search-result badge in `docs/stylesheets/extra.css`, keyed on the `/tdr/` prefix.
+
+The `/tdr/` URL prefix comes from `site_name: tdr` in this repo's `mkdocs.yml`. Changing it
+moves every page and orphans the search badge.
+
+### Still to do
+
+Capture the two screenshots still missing from [CONTRIBUTING.md](CONTRIBUTING.md), which
+need real build runs to exist: `actions-01-status.png` (the Actions tab listing runs, ideally
+with both a green check and a red X) and `actions-02-failed-step.png` (a failed run opened to
+the step that names the file at fault). Save them in `contributing-img/` and add them under
+*What happens after you commit* and *If you see a red X*.
 
 ## License
 

@@ -213,12 +213,6 @@ audit will be reading these.
 
 ## What happens after you commit
 
-> **Status: not yet connected.** This repository is not registered with the combined documentation
-> site yet, so nothing is published at docs.aptrust.org today — your commits are saved safely on
-> GitHub and nothing else happens. The rest of this section describes how it will work once
-> registration is complete. See the *Publishing* section of [README.md](README.md) for what that
-> involves.
-
 When you commit to `main`, a rebuild of the combined documentation site starts automatically. Your
 change is normally live at [docs.aptrust.org](https://docs.aptrust.org/) within **3 to 5 minutes**.
 There is nothing else you need to do — no separate publish step, no button to press.
