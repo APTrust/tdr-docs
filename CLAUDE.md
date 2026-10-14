@@ -44,7 +44,7 @@ Content is committed **directly to `main`** — no branches, no PRs, matching th
 only automated gate is `.github/workflows/check-build.yml`, which runs `mkdocs build --strict` on
 every push, independently of the notify workflow — a commit that fails it is still dispatched. It reports breakage after the fact; it cannot block it.
 
-Two things outside `docs/`, so MkDocs never sees them:
+Three things outside `docs/`, so MkDocs never sees them:
 
 - `CONTRIBUTING.md` — the guide for human editors, written for people with no git experience. It
   holds the accessibility rules in "do this / not this" form. Keep conventions there as a checklist
@@ -55,6 +55,11 @@ Two things outside `docs/`, so MkDocs never sees them:
   sub-criteria folded in, plus a tracking spreadsheet. Stdlib only (the .xlsx is hand-written XML —
   do not add openpyxl); pandoc is the one prerequisite. Deliberately one-way:
   see the rationale in `scripts/README.md` before proposing a DOCX-to-Markdown reverse.
+- `scripts/wp_redirects.py` — turns every page's `source_url` into the 301 redirect table the
+  aptrust.org theme serves (`includes/tdr_redirects.php` in the sibling `aptrust-wordpress-theme`
+  repo). **Renaming or moving a file under `docs/` means re-running it** and redeploying the
+  theme file, or the old aptrust.org URL redirects to a 404. This is the second reason
+  `source_url` must never be rewritten.
 
 ## Commands
 

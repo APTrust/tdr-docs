@@ -1,10 +1,17 @@
+# Scripts
+
+Two scripts live here, outside the documentation itself — nothing in this folder is published
+to the site:
+
+- `docs_to_docx.py` — Word files for review rounds, described first below.
+- `wp_redirects.py` — the aptrust.org redirect table, described at the end under
+  [Redirects from aptrust.org](#redirects-from-aptrustorg).
+
 # Review tooling
 
 `docs_to_docx.py` converts the 127 Markdown pages in `docs/` into Word documents that can be
 uploaded to Google Drive for a collaborative review round, along with a spreadsheet for tracking
 the review's progress.
-
-This folder is outside the documentation itself — nothing here is published to the site.
 
 ## What you need
 
@@ -136,3 +143,26 @@ Converting back automatically would rewrite all 127 files at once, and it would 
   nobody can meaningfully review.
 
 Re-entering the accepted changes by hand is slower, and it cannot silently corrupt the site.
+
+# Redirects from aptrust.org
+
+The 119 pages that came from WordPress are still published at
+`aptrust.org/documentation-page/…`. The aptrust.org theme sends each of those URLs to its page here
+with a permanent (301) redirect, using a lookup table generated from the `source_url` front matter:
+
+```bash
+python3 scripts/wp_redirects.py
+```
+
+It writes `wp-content/themes/aptrust/includes/tdr_redirects.php` in a checkout of the
+`aptrust-wordpress-theme` repo sitting next to this one (`--out` to put it elsewhere). It stops
+without writing anything if a `source_url` is repeated, points outside the five TDR slugs on
+aptrust.org, or the count is not 119.
+
+**Re-run it whenever a page in `docs/` is renamed or moved to another folder**, then commit the
+regenerated file in the theme repo and upload it to WP Engine. Otherwise the old aptrust.org URL
+keeps redirecting to the page's previous address, which is now a 404. Edits to a page's content
+need nothing.
+
+The redirect code itself is `aptrust_tdr_redirect()` in the theme's `functions.php`. It matches on
+the URL, not on the WordPress post, so it keeps working after the old posts are deleted.
